@@ -159,7 +159,7 @@ fun DiscoveryScreen(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 @Preview
-fun MovieItem(photoModel: PhotoModel = sampleModel, onClick: (photoId: Long) -> Unit) {
+fun MovieItem(photoModel: PhotoModel = sampleModel, onClick: (photoId: Long) -> Unit = {}) {
     Column(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,

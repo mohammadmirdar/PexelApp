@@ -1,8 +1,8 @@
 package ir.mirdar.pexelmovieapp.presentation.detail
 
 import androidx.activity.compose.BackHandler
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -24,6 +24,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.TextUnit
+import androidx.compose.ui.unit.TextUnitType
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
@@ -106,7 +108,7 @@ fun DetailContent(
     padding: PaddingValues = PaddingValues(2.dp),
     photoModel: PhotoModel? = samplePhotoModel
 ) {
-    Row(
+    Column(
         modifier = Modifier
             .fillMaxSize()
             .padding(padding)
@@ -123,16 +125,31 @@ fun DetailContent(
             contentScale = ContentScale.Crop
         )
 
-        Spacer(modifier = Modifier
-            .height(10.dp)
-            .fillMaxWidth())
+        Spacer(
+            modifier = Modifier
+                .height(10.dp)
+                .fillMaxWidth()
+        )
 
-        Text(text = photoModel?.photographer ?: "", color = Color.Black)
+        Text(
+            text = photoModel?.photographer ?: "",
+            color = Color.Black,
+            modifier = Modifier.padding(12.dp),
+            fontWeight = FontWeight.Bold,
+            fontSize = TextUnit(22f, TextUnitType.Sp)
+        )
 
-        Spacer(modifier = Modifier
-            .height(10.dp)
-            .fillMaxWidth())
+        Spacer(
+            modifier = Modifier
+                .height(10.dp)
+                .fillMaxWidth()
+        )
 
-        Text(text = photoModel?.alt ?: "", color = Color.Black)
+        Text(
+            text = photoModel?.alt ?: "", color = Color.Black,
+            modifier = Modifier.padding(12.dp),
+            fontWeight = FontWeight.Bold,
+            fontSize = TextUnit(18f, TextUnitType.Sp)
+        )
     }
 }
