@@ -1,7 +1,7 @@
-package ir.mirdar.pexelmovieapp
+package ir.mirdar.pexelmovieapp.presentation
 
 import android.os.Bundle
-import androidx.activity.ComponentActivity
+import androidx.activity.compose.BackHandler
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
@@ -10,23 +10,39 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import ir.mirdar.pexelmovieapp.ui.theme.PexelMovieAppTheme
+import androidx.navigation.compose.rememberNavController
+import dagger.hilt.android.AndroidEntryPoint
+import ir.mirdar.pexelmovieapp.presentation.common.BaseActivity
+import ir.mirdar.pexelmovieapp.presentation.common.HomeAction
+import ir.mirdar.pexelmovieapp.presentation.common.HomeIntent
+import ir.mirdar.pexelmovieapp.presentation.common.HomeState
+import ir.mirdar.pexelmovieapp.presentation.theme.BazaarSampleTheme
+@AndroidEntryPoint
+class MainActivity : BaseActivity<HomeIntent, HomeAction, HomeState>() {
 
-class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            PexelMovieAppTheme {
+            val navController = rememberNavController()
+            BazaarSampleTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting("Android")
+                    AppNavHost(
+                        navController = navController,
+                        startDestination = NavigationItem.Splash.route
+                    )
                 }
             }
+            BackHandler {
+                finish()
+            }
         }
+
     }
+
 }
 
 @Composable
@@ -40,7 +56,7 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
-    PexelMovieAppTheme {
+    BazaarSampleTheme {
         Greeting("Android")
     }
 }
