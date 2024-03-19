@@ -13,9 +13,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
 import ir.mirdar.pexelmovieapp.presentation.common.BaseActivity
-import ir.mirdar.pexelmovieapp.presentation.common.HomeAction
-import ir.mirdar.pexelmovieapp.presentation.common.HomeIntent
-import ir.mirdar.pexelmovieapp.presentation.common.HomeState
+import ir.mirdar.pexelmovieapp.presentation.discovery.HomeAction
+import ir.mirdar.pexelmovieapp.presentation.discovery.HomeIntent
+import ir.mirdar.pexelmovieapp.presentation.discovery.HomeState
 import ir.mirdar.pexelmovieapp.presentation.theme.BazaarSampleTheme
 @AndroidEntryPoint
 class MainActivity : BaseActivity<HomeIntent, HomeAction, HomeState>() {
@@ -36,27 +36,8 @@ class MainActivity : BaseActivity<HomeIntent, HomeAction, HomeState>() {
                     )
                 }
             }
-            BackHandler {
-                finish()
-            }
         }
 
     }
 
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    BazaarSampleTheme {
-        Greeting("Android")
-    }
 }

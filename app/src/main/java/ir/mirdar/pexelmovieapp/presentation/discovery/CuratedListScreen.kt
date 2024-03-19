@@ -1,5 +1,7 @@
-package ir.mirdar.pexelmovieapp.presentation.screens
+package ir.mirdar.pexelmovieapp.presentation.discovery
 
+import android.app.Activity
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -41,15 +43,11 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-import ir.mirdar.bazaarsample.presentation.UpcomingListViewModel
+import ir.mirdar.bazaarsample.presentation.CuratedViewModel
 import ir.mirdar.pexelmovieapp.R
 import ir.mirdar.pexelmovieapp.domain.models.PhotoModel
 import ir.mirdar.pexelmovieapp.domain.models.SourceModel
-import ir.mirdar.pexelmovieapp.presentation.common.HomeIntent
-import ir.mirdar.pexelmovieapp.presentation.common.HomeState
 import ir.mirdar.pexelmovieapp.presentation.common.Utils
-import ir.mirdar.pexelmovieapp.presentation.common.Utils.IMAGE_BASE_URL
-import okhttp3.Headers
 
 val sampleModel = PhotoModel(
     id = 1234,
@@ -77,7 +75,7 @@ val sampleModel = PhotoModel(
 @Composable
 fun DiscoveryScreen(
     navController: NavController,
-    viewModel: UpcomingListViewModel = hiltViewModel()
+    viewModel: CuratedViewModel = hiltViewModel()
 ) {
     val state = viewModel.state.collectAsState()
     val lazyMovieItem = remember {
@@ -128,7 +126,11 @@ fun DiscoveryScreen(
                     if (index >= upcomingList.size - 1 && !Utils.IS_LOADING && !Utils.END_OF_PAGE) {
                         viewModel.dispatchIntent(HomeIntent.LoadUpcomingList(viewModel.currentPage + 1))
                     }
-                    MovieItem(upcomingList[index])
+                    MovieItem(
+                        photoModel = upcomingList[index],
+                        onClick = {
+                            navController.navigate("detail/$it")
+                        })
                 }
             }
 
@@ -148,14 +150,19 @@ fun DiscoveryScreen(
             }
         }
     }
+    val activity = (LocalContext.current as Activity)
+    BackHandler {
+        activity.finish()
+    }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 @Preview
-fun MovieItem(photoModel: PhotoModel = sampleModel) {
+fun MovieItem(photoModel: PhotoModel = sampleModel, onClick: (photoId: Long) -> Unit) {
     Column(
         verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Card(
             modifier = Modifier
@@ -163,7 +170,8 @@ fun MovieItem(photoModel: PhotoModel = sampleModel) {
                 .wrapContentHeight()
                 .padding(4.dp)
                 .background(color = Color(0xFFEBF7FE)),
-            shape = RoundedCornerShape(size = 12.dp)
+            shape = RoundedCornerShape(size = 12.dp),
+            onClick = { onClick(photoModel.id) }
         ) {
             AsyncImage(
                 model = ImageRequest.Builder(LocalContext.current)

@@ -1,8 +1,8 @@
-package ir.mirdar.pexelmovieapp.presentation.common
+package ir.mirdar.pexelmovieapp.presentation.discovery
 
 import ir.mirdar.pexelmovieapp.data.common.CallErrors
-import ir.mirdar.pexelmovieapp.domain.models.CuratedModel
 import ir.mirdar.pexelmovieapp.domain.models.PhotoModel
+import ir.mirdar.pexelmovieapp.presentation.common.ViewState
 
 
 sealed class HomeState : ViewState {

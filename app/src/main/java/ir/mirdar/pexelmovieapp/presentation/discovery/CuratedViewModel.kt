@@ -4,9 +4,9 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import ir.mirdar.pexelmovieapp.domain.GetUpcomingList
 import ir.mirdar.pexelmovieapp.presentation.common.BaseViewModel
-import ir.mirdar.pexelmovieapp.presentation.common.HomeAction
-import ir.mirdar.pexelmovieapp.presentation.common.HomeIntent
-import ir.mirdar.pexelmovieapp.presentation.common.HomeState
+import ir.mirdar.pexelmovieapp.presentation.discovery.HomeAction
+import ir.mirdar.pexelmovieapp.presentation.discovery.HomeIntent
+import ir.mirdar.pexelmovieapp.presentation.discovery.HomeState
 import ir.mirdar.pexelmovieapp.presentation.common.reduce
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -16,7 +16,7 @@ import javax.inject.Inject
 
 
 @HiltViewModel
-class UpcomingListViewModel @Inject constructor(
+class CuratedViewModel @Inject constructor(
     private val getUpcomingList: GetUpcomingList
 ) : BaseViewModel<HomeIntent, HomeAction, HomeState>() {
 
