@@ -1,4 +1,4 @@
-package ir.mirdar.bazaarsample.presentation
+package ir.mirdar.pexelmovieapp.presentation.discovery
 
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel

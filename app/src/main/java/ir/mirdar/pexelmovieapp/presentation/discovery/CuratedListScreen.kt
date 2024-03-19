@@ -43,7 +43,6 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-import ir.mirdar.bazaarsample.presentation.CuratedViewModel
 import ir.mirdar.pexelmovieapp.R
 import ir.mirdar.pexelmovieapp.domain.models.PhotoModel
 import ir.mirdar.pexelmovieapp.domain.models.SourceModel
@@ -98,7 +97,7 @@ fun DiscoveryScreen(
                     IconButton(onClick = { /*TODO*/ }) {
                         Icon(
                             painter = painterResource(id = R.drawable.pexel),
-                            contentDescription = "bazaar logo",
+                            contentDescription = "pexel logo",
                             tint = Color.Unspecified,
                             modifier = Modifier
                                 .width(35.dp)

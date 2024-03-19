@@ -80,7 +80,7 @@ fun ImageDetailScreen(
                     IconButton(onClick = { /*TODO*/ }) {
                         Icon(
                             painter = painterResource(id = R.drawable.pexel),
-                            contentDescription = "bazaar logo",
+                            contentDescription = "pexel logo",
                             tint = Color.Unspecified,
                             modifier = Modifier
                                 .width(35.dp)
